@@ -30,7 +30,7 @@ library(dplyr)
 library(writexl)
 
 ###Once you enter, you will receive your token from KoBO which you need to insert as below
-kobo_setup(url = "https://eu.kobotoolbox.org", token = "XXX")
+kobo_setup(url = "https://eu.kobotoolbox.org", token = "dd07267fe9646bb321da93c6b1eadda332726aa5")
 
 
 ###Run the script below to see list of your surveys
@@ -39,7 +39,7 @@ asset_list
 
 ##Find the survey you want to analyse and enter the name as below
 
-uid <- filter(asset_list, name == "XXX") |> ## change the survey name accordingly as shown in KoBo
+uid <- filter(asset_list, name == "JNA 2024 Costa Rica") |> ## change the survey name accordingly as shown in KoBo
   pull(uid)
 
 ###You will see the number of submissions and name.
@@ -96,8 +96,10 @@ main_merged <- left_join(ind, main, by = c("_parent_index"="_index")) %>%
     FS_D2_Q2 = as.double(as.factor(FS_D2_Q2)),
     FS_D2_Q3 = as.double(as.factor(FS_D2_Q3)),
     FS_D2_Q4 = as.double(as.factor(FS_D2_Q4)),
-    FS_D2_Q5 = as.double(as.factor(FS_D1_Q10))
+    FS_D2_Q5 = as.double(as.factor(FS_D1_Q5))
   )
+
+
 
 
 
