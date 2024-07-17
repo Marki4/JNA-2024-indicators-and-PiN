@@ -238,16 +238,15 @@ pins_final_nut_b <- data.frame(
 )
 
 #Child Protection
-df_sectoral_pin_cp <- df_pin %>%
+df_sectoral_pin_cp <- df_sectoral_pin %>%
   filter(child_edu_cp=="Yes")%>%
-  select(-intersector_ds, Child_protection_ds) %>%
   #include in sectorial pins if included in intersectorial pin (intersector== 1) 
   #and there is a privation in the specific sector (sector_ds>0)
   mutate(across(
     c(
-      "Child_protection_ds"
+      "Child_protection_pin"
     ),
-    ~ ifelse(intersector_pin == 1 & . > 0, 1, 0)
+    ~ ifelse(Protection_pin == 1 & . > 0, 1, 0)
   )) |>
   #rename ds to pin
   rename_with( ~ str_replace(., "_ds$", "_pin")) 
@@ -291,5 +290,4 @@ pins_final <- data.frame(
 pins_final_final <- rbind(pins_final, pins_final_edu, pins_final_nut_w, pins_final_nut_b, pins_final_cp)
 
 write_xlsx(pins_final_final, "pins_final_final.xlsx")
-
 
